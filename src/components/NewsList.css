@@ -1,0 +1,128 @@
+.news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.news-list-item {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.news-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.news-list-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.news-list-header input {
+  flex: 1;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid #cbd5f5;
+}
+
+.news-list-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.news-list-actions button {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: none;
+  background-color: #2563eb;
+  color: white;
+  cursor: pointer;
+}
+
+.news-list-actions button.secondary {
+  background-color: #cbd5f5;
+  color: #0f172a;
+}
+
+.news-list-actions button.danger {
+  background-color: #ef4444;
+}
+
+.news-list-meta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  color: #475569;
+  font-size: 0.85rem;
+}
+
+.news-list-meta select,
+.news-list-edit-options input,
+.news-list-edit-options textarea {
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid #cbd5f5;
+}
+
+.badge {
+  background-color: #e0e7ff;
+  color: #312e81;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.news-list-body p {
+  margin: 0;
+  color: #1f2937;
+  line-height: 1.6;
+}
+
+.news-list-edit-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.news-list-edit-options label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: #1e293b;
+}
+
+.news-list-edit-options .checkbox {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.news-list-empty,
+.news-list-error {
+  padding: 18px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.news-list-empty {
+  background-color: rgba(37, 99, 235, 0.08);
+  color: #1d4ed8;
+}
+
+.news-list-error {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: #b91c1c;
+}

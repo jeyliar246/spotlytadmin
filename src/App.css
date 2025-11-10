@@ -1,0 +1,31 @@
+.grid {
+  display: grid;
+  gap: 24px;
+}
+
+.grid.grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.error-banner {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: #b91c1c;
+  padding: 14px 18px;
+  border-radius: 12px;
+}
+
+.news-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.news-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.news-header h2 {
+  margin: 0;
+}
