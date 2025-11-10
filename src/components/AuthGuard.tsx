@@ -8,6 +8,21 @@ const AuthGuard = ({ children }: { children: React.ReactNode }) => {
   const [message, setMessage] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
+  if (error && error.includes('Supabase credentials')) {
+    return (
+      <div className="auth-guard__state">
+        <div className="auth-guard__card">
+          <h2>Configuration Required</h2>
+          <p>{error}</p>
+          <p>
+            Add <code>VITE_SUPABASE_URL</code> and <code>VITE_SUPABASE_ANON_KEY</code> to your environment (for
+            example in <code>.env.local</code>) and redeploy.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   if (isLoading) {
     return (
       <div className="auth-guard__state">

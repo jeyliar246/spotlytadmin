@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import type { Session, User } from '@supabase/supabase-js';
-import { supabase } from '../lib/supabaseClient';
+import { supabase, supabaseInitError } from '../lib/supabaseClient';
 
 interface AuthContextValue {
   session: Session | null;
@@ -21,9 +21,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(supabaseInitError);
 
   const fetchSession = async () => {
+    if (!supabase) {
+      setIsLoading(false);
+      return;
+    }
+
     setIsLoading(true);
     try {
       const { data, error: sessionError } = await supabase.auth.getSession();
@@ -45,6 +50,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const evaluateAdminRole = async (currentUser: User) => {
+    if (!supabase) {
+      setIsAdmin(false);
+      return;
+    }
+
     const appRole = currentUser.app_metadata?.role as string | undefined;
     if (appRole && ADMIN_ROLES.includes(appRole)) {
       setIsAdmin(true);
@@ -68,6 +78,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
+    if (!supabase) {
+      setIsLoading(false);
+      return;
+    }
+
     fetchSession();
 
     const { data: listener } = supabase.auth.onAuthStateChange((_event, newSession) => {
@@ -87,6 +102,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const signInWithMagicLink = async (email: string) => {
+    if (!supabase) {
+      throw new Error('Supabase credentials missing.');
+    }
+
     setError(null);
     const { error: signInError } = await supabase.auth.signInWithOtp({
       email,
@@ -101,6 +120,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const signOut = async () => {
+    if (!supabase) return;
     setError(null);
     const { error: signOutError } = await supabase.auth.signOut();
     if (signOutError) {
