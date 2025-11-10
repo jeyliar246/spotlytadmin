@@ -15,8 +15,8 @@ const AuthGuard = ({ children }: { children: React.ReactNode }) => {
           <h2>Configuration Required</h2>
           <p>{error}</p>
           <p>
-            Add <code>VITE_SUPABASE_URL</code> and <code>VITE_SUPABASE_ANON_KEY</code> to your environment (for
-            example in <code>.env.local</code>) and redeploy.
+            Add <code>VITE_SUPABASE_URL</code> / <code>VITE_SUPABASE_ANON_KEY</code> (or
+            <code>SUPABASE_URL</code> / <code>SUPABASE_KEY</code>) to your environment and redeploy.
           </p>
         </div>
       </div>
